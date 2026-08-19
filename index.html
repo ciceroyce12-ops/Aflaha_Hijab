@@ -1,49 +1,684 @@
-<!-- Replace your current Hero Section with this -->
-<section id="home" class="hero" style="position: relative; padding: 150px 20px; overflow: hidden;">
-    
-    <!-- Video Background -->
-    <iframe 
-        class="video-background"
-        src="https://www.youtube.com/embed/2bVZ4hn_gN0?autoplay=1&mute=1&loop=1&playlist=2bVZ4hn_gN0&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1" 
-        frameborder="0" 
-        allow="autoplay; encrypted-media" 
-        allowfullscreen>
-    </iframe>
-
-    <!-- Dark Overlay to make text readable -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1;"></div>
-
-    <!-- Hero Content -->
-    <div style="position: relative; z-index: 2; color: white; text-align: center;">
-        <h2 style="font-size: 2.5rem; margin-bottom: 10px; font-weight: 700;">Pusat Perlengkapan Busana Muslim</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 25px; font-weight: 300;">Temukan koleksi Jilbab Syar'i, Bergo Tali, Gamis, dan Aksesoris Muslimah terbaik Anda.</p>
-        <a href="https://www.instagram.com/aflahahijabexpert/" target="_blank" class="btn">Lihat Koleksi di Instagram</a>
-    </div>
-</section>
-
-<!-- Add this CSS to your <style> section -->
-<style>
-    .video-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        pointer-events: none; /* Prevents user from clicking/pausing the video */
-    }
-    
-    /* Make sure video scales correctly */
-    @media (min-aspect-ratio: 16/9) {
-        .video-background {
-            height: 300%;
-            top: -100%;
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aflaha - Hijab Expert Syar'i</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-pink: #d91d79;
+            --light-pink: #fce4ec;
+            --accent-green: #2e7d32;
+            --dark-text: #333333;
+            --light-bg: #f9f9f9;
+            --white: #ffffff;
+            --whatsapp-green: #25d366;
         }
-    }
-    @media (max-aspect-ratio: 16/9) {
-        .video-background {
-            width: 300%;
-            left: -100%;
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
-    }
-</style>
+
+        body {
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(217, 29, 121, 0.3);
+        }
+
+        .brand-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text h1 {
+            font-size: 1.3rem;
+            color: var(--primary-pink);
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .logo-text span {
+            font-size: 0.65rem;
+            display: block;
+            color: #666;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-pink);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(217, 29, 121, 0.85), rgba(46, 125, 50, 0.8)), url('hero.jpg') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary-pink);
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: var(--light-pink);
+        }
+
+        .wa-section {
+            background: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .btn-whatsapp-big {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background-color: var(--whatsapp-green);
+            color: var(--white);
+            padding: 16px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-whatsapp-big:hover {
+            background-color: #1ebe57;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .btn-whatsapp-big i {
+            font-size: 1.5rem;
+        }
+
+        .floating-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--whatsapp-green);
+            color: white;
+            padding: 14px 24px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            z-index: 1001;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+        }
+
+        .floating-wa i {
+            font-size: 1.6rem;
+        }
+
+        .floating-wa:hover {
+            transform: translateY(-3px);
+            background-color: #1ebe57;
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.7);
+        }
+
+        .promo-banner {
+            background-color: var(--light-pink);
+            border-left: 6px solid var(--primary-pink);
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .promo-banner h3 {
+            color: var(--primary-pink);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .promo-banner p {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.0rem;
+            color: var(--dark-text);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-pink);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(217, 29, 121, 0.15);
+        }
+
+        .product-img {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .product-img::after {
+            content: '\f16d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 50%;
+            font-size: 0.9rem;
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .product-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--dark-text);
+        }
+
+        .product-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .price-container {
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--primary-pink);
+            font-size: 1.1rem;
+        }
+
+        .btn-product-wa {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--whatsapp-green);
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-product-wa:hover {
+            background-color: #1ebe57;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 18px 20px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: var(--light-pink);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+            color: var(--primary-pink);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 20px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 150px;
+            padding: 0 20px 18px 20px;
+        }
+
+        footer {
+            background-color: #222;
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; 
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+            .promo-banner h3 {
+                font-size: 1.4rem;
+            }
+            .btn-whatsapp-big {
+                font-size: 0.95rem;
+                padding: 14px 20px;
+            }
+            .floating-wa span {
+                display: none; 
+            }
+            .floating-wa {
+                padding: 12px;
+                border-radius: 50%;
+            }
+        }
+
+        /* Video Background CSS */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none; 
+        }
+        
+        @media (min-aspect-ratio: 16/9) {
+            .video-background {
+                height: 300%;
+                top: -100%;
+            }
+        }
+        @media (max-aspect-ratio: 16/9) {
+            .video-background {
+                width: 300%;
+                left: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating WhatsApp Widget -->
+    <a href="https://wa.me/628122655430?text=Halo%20Admin,%20saya%20mau%20tanya%20produk%20Aflaha" target="_blank" class="floating-wa" title="Hubungi via Whatsapp">
+        <i class="fab fa-whatsapp"></i>
+        <span>Hubungi via Whatsapp</span>
+    </a>
+
+    <!-- Header -->
+    <header>
+        <div class="navbar">
+            <div class="logo-container">
+                <div class="brand-logo">
+                    <img src="logo.jpeg" alt="Aflaha Logo">
+                </div>
+                <div class="logo-text">
+                    <h1>Aflaha</h1>
+                    <span>HIJAB EXPERT SYAR'I</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#produk">Koleksi</a></li>
+                <li><a href="#promo">Promo</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="https://www.instagram.com/aflahahijabexpert/" target="_blank"><i class="fab fa-instagram" style="color: var(--primary-pink);"></i> Instagram</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero" style="position: relative; padding: 150px 20px; overflow: hidden;">
+    
+        <!-- Video Background -->
+        <iframe 
+            class="video-background"
+            src="https://www.youtube.com/embed/2bVZ4hn_gN0?autoplay=1&mute=1&loop=1&playlist=2bVZ4hn_gN0&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1" 
+            frameborder="0" 
+            allow="autoplay; encrypted-media" 
+            allowfullscreen>
+        </iframe>
+    
+        <!-- Dark Overlay to make text readable -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1;"></div>
+    
+        <!-- Hero Content -->
+        <div style="position: relative; z-index: 2; color: white; text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 10px; font-weight: 700;">Pusat Perlengkapan Busana Muslim</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 25px; font-weight: 300;">Temukan koleksi Jilbab Syar'i, Bergo Tali, Gamis, dan Aksesoris Muslimah terbaik Anda.</p>
+            <a href="https://www.instagram.com/aflahahijabexpert/" target="_blank" class="btn">Lihat Koleksi di Instagram</a>
+        </div>
+    </section>
+
+    <!-- Big WhatsApp Button Section -->
+    <section class="wa-section">
+        <a href="https://wa.me/628122655430?text=Halo%20Admin,%20saya%20ingin%20berkonsultasi%20mengenai%20produk%20Aflaha" target="_blank" class="btn-whatsapp-big">
+            <i class="fab fa-whatsapp"></i> Klik Disini Untuk Hubungi Admin via Whatsapp
+        </a>
+    </section>
+
+    <!-- Promo Banner -->
+    <section id="promo">
+        <div class="promo-banner">
+            <h3>🔥 Belanja Hemat Spesial Toko 🔥</h3>
+            <p>Rp. 100.000,- Bisa Mendapatkan 3 - 5 Jilbab Berkualitas Tinggi!</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="produk" class="container">
+        <div class="section-title">
+            <h2>Produk Unggulan Kami</h2>
+        </div>
+        <div class="product-grid">
+            
+            <!-- Product 1: Bergo Polos & Tali Syar'i -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('product1.jpg');"></div>
+                <div class="product-info">
+                    <div>
+                        <h4>Bergo Polos & Tali Syar'i</h4>
+                        <p>Koleksi jilbab instan bergo tali premium yang nyaman, rapi, dan modis dipakai sehari-hari.</p>
+                    </div>
+                    <div>
+                        <div class="price-container">
+                            <span class="price">Mulai Rp. 25.000</span>
+                        </div>
+                        <a href="https://wa.me/628122655430?text=Halo%20Admin,%20saya%20tertarik%20memesan%20Bergo%20Polos%20%26%20Tali%20Syar'i" target="_blank" class="btn-product-wa">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2: Gamis Syar'i Elegan -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('product2.JPG');"></div>
+                <div class="product-info">
+                    <div>
+                        <h4>Gamis Syar'i Elegan</h4>
+                        <p>Pilihan gamis modis, anggun, dan tetap sesuai syariat untuk menemani berbagai aktivitas spesial Anda.</p>
+                    </div>
+                    <div>
+                        <div class="price-container">
+                            <span class="price">Mulai Rp. 150.000</span>
+                        </div>
+                        <a href="https://wa.me/628122655430?text=Halo%20Admin,%20saya%20tertarik%20memesan%20Gamis%20Syar'i%20Elegan" target="_blank" class="btn-product-wa">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3: Pashmina Instan Layer -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('product3.JPG');"></div>
+                <div class="product-info">
+                    <div>
+                        <h4>Pashmina Instan Layer</h4>
+                        <p>Pashmina instan berkualitas tinggi dengan desain double layer yang cantik, elegan, dan praktis.</p>
+                    </div>
+                    <div>
+                        <div class="price-container">
+                            <span class="price">Mulai Rp. 45.000</span>
+                        </div>
+                        <a href="https://wa.me/628122655430?text=Halo%20Admin,%20saya%20tertarik%20memesan%20Pashmina%20Instan%20Layer" target="_blank" class="btn-product-wa">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4: Mukena & Perlengkapan Sholat -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('product4.JPG');"></div>
+                <div class="product-info">
+                    <div>
+                        <h4>Mukena & Perlengkapan Sholat</h4>
+                        <p>Mukena adem, lembut, dan cantik lengkap dengan sajadah serta perlengkapan ibadah terbaik.</p>
+                    </div>
+                    <div>
+                        <div class="price-container">
+                            <span class="price">Mulai Rp. 120.000</span>
+                        </div>
+                        <a href="https://wa.me/628122655430?text=Halo%20Admin,%20saya%20tertarik%20memesan%20Mukena%20%26%20Perlengkapan%20Sholat" target="_blank" class="btn-product-wa">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="container">
+        <div class="section-title">
+            <h2>Pertanyaan Umum (FAQ)</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">
+                    Apa saja pilihan bahan yang tersedia? 
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Kami menggunakan bahan berkualitas tinggi seperti Jersey Premium, Crinkle Airflow, dan Wolfis yang adem, lembut, tidak menerawang, serta sangat nyaman digunakan sehari-hari.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Apakah bisa COD (Bayar di Tempat)? 
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Ya, layanan pengiriman dengan sistem COD (Cash on Delivery) tersedia melalui pemesanan langsung via WhatsApp admin kami.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Bagaimana cara memilih ukuran jilbab/gamis? 
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Setiap produk dilengkapi dengan keterangan ukuran standar. Anda juga bisa langsung berkonsultasi dengan admin via WhatsApp untuk mendapatkan rekomendasi ukuran yang paling pas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Aflaha Hijab Expert Syar'i. All Rights Reserved.</p>
+        <p style="margin-top: 5px;">Pusat Perlengkapan Busana Muslim Terpercaya | <a href="https://www.instagram.com/aflahahijabexpert/" target="_blank" style="color: var(--primary-pink); text-decoration: none;">@aflahahijabexpert</a></p>
+    </footer>
+
+    <!-- FAQ Accordion Script -->
+    <script>
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
