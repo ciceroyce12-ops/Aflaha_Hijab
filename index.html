@@ -174,6 +174,31 @@
             font-size: 1.5rem;
         }
 
+        /* Floating WhatsApp Widget */
+        .floating-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--whatsapp-green);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1001;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .floating-wa:hover {
+            transform: scale(1.1);
+            background-color: #1ebe57;
+        }
+
         .promo-banner {
             background-color: var(--light-pink);
             border-left: 6px solid var(--primary-pink);
@@ -241,9 +266,9 @@
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .product-card:hover {
@@ -274,6 +299,10 @@
 
         .product-info {
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
         }
 
         .product-info h4 {
@@ -288,10 +317,90 @@
             margin-bottom: 15px;
         }
 
+        .price-container {
+            margin-bottom: 15px;
+        }
+
         .price {
             font-weight: 700;
             color: var(--primary-pink);
             font-size: 1.1rem;
+        }
+
+        .btn-product-wa {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--whatsapp-green);
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-product-wa:hover {
+            background-color: #1ebe57;
+        }
+
+        /* FAQ Section Styles */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 18px 20px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: var(--light-pink);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+            color: var(--primary-pink);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 20px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 150px;
+            padding: 0 20px 18px 20px;
         }
 
         footer {
@@ -326,6 +435,11 @@
 </head>
 <body>
 
+    <!-- Floating WhatsApp Widget -->
+    <a href="https://wa.me/628122655430?text=Halo%20Admin,%20saya%20mau%20tanya%20produk%20Aflaha" target="_blank" class="floating-wa" title="Chat WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <!-- Header -->
     <header>
         <div class="navbar">
@@ -342,6 +456,7 @@
                 <li><a href="#home">Beranda</a></li>
                 <li><a href="#produk">Koleksi</a></li>
                 <li><a href="#promo">Promo</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="https://www.instagram.com/aflahahijabexpert/" target="_blank"><i class="fab fa-instagram" style="color: var(--primary-pink);"></i> Instagram</a></li>
             </ul>
         </div>
@@ -356,7 +471,7 @@
 
     <!-- Big WhatsApp Button Section -->
     <section class="wa-section">
-        <a href="https://wa.me/628122655430" target="_blank" class="btn-whatsapp-big">
+        <a href="https://wa.me/628122655430?text=Halo%20Admin,%20saya%20ingin%20berkonsultasi%20mengenai%20produk%20Aflaha" target="_blank" class="btn-whatsapp-big">
             <i class="fab fa-whatsapp"></i> Klik Disini Untuk Hubungi Admin via Whatsapp
         </a>
     </section>
@@ -377,45 +492,117 @@
         <div class="product-grid">
             
             <!-- Product 1: Bergo Polos & Tali Syar'i -->
-            <a href="https://www.instagram.com/inasalghaniyyah/reel/DHN0Is2zsqT/" target="_blank" class="product-card">
+            <div class="product-card">
                 <div class="product-img" style="background-image: url('product1.jpg');"></div>
                 <div class="product-info">
-                    <h4>Bergo Polos & Tali Syar'i</h4>
-                    <p>Koleksi jilbab instan bergo tali premium yang nyaman, rapi, dan modis dipakai sehari-hari.</p>
-                    <span class="price">Mulai Rp. 25.000</span>
+                    <div>
+                        <h4>Bergo Polos & Tali Syar'i</h4>
+                        <p>Koleksi jilbab instan bergo tali premium yang nyaman, rapi, dan modis dipakai sehari-hari.</p>
+                    </div>
+                    <div>
+                        <div class="price-container">
+                            <span class="price">Mulai Rp. 25.000</span>
+                        </div>
+                        <a href="https://wa.me/628122655430?text=Halo%20Admin,%20saya%20tertarik%20memesan%20Bergo%20Polos%20%26%20Tali%20Syar'i" target="_blank" class="btn-product-wa">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </a>
+            </div>
 
             <!-- Product 2: Gamis Syar'i Elegan -->
-            <a href="https://www.instagram.com/aflahahijabexpert/p/DTfCw3REyJS/" target="_blank" class="product-card">
+            <div class="product-card">
                 <div class="product-img" style="background-image: url('product2.JPG');"></div>
                 <div class="product-info">
-                    <h4>Gamis Syar'i Elegan</h4>
-                    <p>Pilihan gamis modis, anggun, dan tetap sesuai syariat untuk menemani berbagai aktivitas spesial Anda.</p>
-                    <span class="price">Mulai Rp. 150.000</span>
+                    <div>
+                        <h4>Gamis Syar'i Elegan</h4>
+                        <p>Pilihan gamis modis, anggun, dan tetap sesuai syariat untuk menemani berbagai aktivitas spesial Anda.</p>
+                    </div>
+                    <div>
+                        <div class="price-container">
+                            <span class="price">Mulai Rp. 150.000</span>
+                        </div>
+                        <a href="https://wa.me/628122655430?text=Halo%20Admin,%20saya%20tertarik%20memesan%20Gamis%20Syar'i%20Elegan" target="_blank" class="btn-product-wa">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </a>
+            </div>
 
             <!-- Product 3: Pashmina Instan Layer -->
-            <a href="https://www.instagram.com/aflahahijabexpert/reel/DahjDWbzXpT/" target="_blank" class="product-card">
+            <div class="product-card">
                 <div class="product-img" style="background-image: url('product3.JPG');"></div>
                 <div class="product-info">
-                    <h4>Pashmina Instan Layer</h4>
-                    <p>Pashmina instan berkualitas tinggi dengan desain double layer yang cantik, elegan, dan praktis.</p>
-                    <span class="price">Mulai Rp. 45.000</span>
+                    <div>
+                        <h4>Pashmina Instan Layer</h4>
+                        <p>Pashmina instan berkualitas tinggi dengan desain double layer yang cantik, elegan, dan praktis.</p>
+                    </div>
+                    <div>
+                        <div class="price-container">
+                            <span class="price">Mulai Rp. 45.000</span>
+                        </div>
+                        <a href="https://wa.me/628122655430?text=Halo%20Admin,%20saya%20tertarik%20memesan%20Pashmina%20Instan%20Layer" target="_blank" class="btn-product-wa">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </a>
+            </div>
 
             <!-- Product 4: Mukena & Perlengkapan Sholat -->
-            <a href="https://www.instagram.com/aflahahijabexpert/reel/DbpmAwTzRq7/" target="_blank" class="product-card">
+            <div class="product-card">
                 <div class="product-img" style="background-image: url('product4.JPG');"></div>
                 <div class="product-info">
-                    <h4>Mukena & Perlengkapan Sholat</h4>
-                    <p>Mukena adem, lembut, dan cantik lengkap dengan sajadah serta perlengkapan ibadah terbaik.</p>
-                    <span class="price">Mulai Rp. 120.000</span>
+                    <div>
+                        <h4>Mukena & Perlengkapan Sholat</h4>
+                        <p>Mukena adem, lembut, dan cantik lengkap dengan sajadah serta perlengkapan ibadah terbaik.</p>
+                    </div>
+                    <div>
+                        <div class="price-container">
+                            <span class="price">Mulai Rp. 120.000</span>
+                        </div>
+                        <a href="https://wa.me/628122655430?text=Halo%20Admin,%20saya%20tertarik%20memesan%20Mukena%20%26%20Perlengkapan%20Sholat" target="_blank" class="btn-product-wa">
+                            <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
                 </div>
-            </a>
+            </div>
 
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="container">
+        <div class="section-title">
+            <h2>Pertanyaan Umum (FAQ)</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">
+                    Apa saja pilihan bahan yang tersedia? 
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Kami menggunakan bahan berkualitas tinggi seperti Jersey Premium, Crinkle Airflow, dan Wolfis yang adem, lembut, tidak menerawang, serta sangat nyaman digunakan sehari-hari.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Apakah bisa COD (Bayar di Tempat)? 
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Ya, layanan pengiriman dengan sistem COD (Cash on Delivery) tersedia melalui pemesanan langsung via WhatsApp admin kami.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Bagaimana cara memilih ukuran jilbab/gamis? 
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Setiap produk dilengkapi dengan keterangan ukuran standar. Anda juga bisa langsung berkonsultasi dengan admin via WhatsApp untuk mendapatkan rekomendasi ukuran yang paling pas.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -424,6 +611,24 @@
         <p>&copy; 2026 Aflaha Hijab Expert Syar'i. All Rights Reserved.</p>
         <p style="margin-top: 5px;">Pusat Perlengkapan Busana Muslim Terpercaya | <a href="https://www.instagram.com/aflahahijabexpert/" target="_blank" style="color: var(--primary-pink); text-decoration: none;">@aflahahijabexpert</a></p>
     </footer>
+
+    <!-- FAQ Accordion Script -->
+    <script>
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                
+                // Optional: Close other open items
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                item.classList.toggle('active');
+            });
+        });
+    </script>
 
 </body>
 </html>
