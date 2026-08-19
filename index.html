@@ -174,29 +174,34 @@
             font-size: 1.5rem;
         }
 
-        /* Floating WhatsApp Widget */
+        /* Floating WhatsApp Widget with Text */
         .floating-wa {
             position: fixed;
             bottom: 25px;
             right: 25px;
             background-color: var(--whatsapp-green);
             color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            padding: 14px 24px;
+            border-radius: 50px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            gap: 10px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
             z-index: 1001;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
         }
 
+        .floating-wa i {
+            font-size: 1.6rem;
+        }
+
         .floating-wa:hover {
-            transform: scale(1.1);
+            transform: translateY(-3px);
             background-color: #1ebe57;
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.7);
         }
 
         .promo-banner {
@@ -430,14 +435,22 @@
                 font-size: 0.95rem;
                 padding: 14px 20px;
             }
+            .floating-wa span {
+                display: none; /* Collapses to icon-only on very small mobile screens for spacing, or keep it if preferred */
+            }
+            .floating-wa {
+                padding: 12px;
+                border-radius: 50%;
+            }
         }
     </style>
 </head>
 <body>
 
     <!-- Floating WhatsApp Widget -->
-    <a href="https://wa.me/628122655430?text=Halo%20Admin,%20saya%20mau%20tanya%20produk%20Aflaha" target="_blank" class="floating-wa" title="Chat WhatsApp">
+    <a href="https://wa.me/628122655430?text=Halo%20Admin,%20saya%20mau%20tanya%20produk%20Aflaha" target="_blank" class="floating-wa" title="Hubungi via Whatsapp">
         <i class="fab fa-whatsapp"></i>
+        <span>Hubungi via Whatsapp</span>
     </a>
 
     <!-- Header -->
@@ -618,7 +631,6 @@
             button.addEventListener('click', () => {
                 const item = button.parentElement;
                 
-                // Optional: Close other open items
                 document.querySelectorAll('.faq-item').forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.classList.remove('active');
